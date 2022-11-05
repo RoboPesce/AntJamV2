@@ -16,23 +16,16 @@ public class AntMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //rotation 
+        setMovement();
+        //rotation
         float dist = Vector3.Distance(transform.position, getMousePos());
-        float angle = Vector2.Angle(getForward(), movement);
-        Debug.DrawRay(transform.position, getForward(), new Color(0, 0, 0));
+        float angle = Vector2.SignedAngle(getForward(), movement);
         Debug.Log("Euler:"+transform.eulerAngles.z);
         Debug.Log("angle:" + angle);
-        if(angle != 0)//check if ant is pointing towards player
-        { 
-            transform.Rotate(0.0f, 0.0f, 1f);
-        }
+        //check if ant is pointing towards player
+        if (angle != 0) transform.Rotate(0.0f, 0.0f, angle);
         
-        if(dist > 1.0f )//if ant is within a certain radius
-        {
-            setMovement();
-            transform.position += Time.deltaTime*movement*antSpeed;
-        }
-        
+        if(dist > 1.0f ) transform.position += Time.deltaTime*movement*antSpeed;
     }
 
     Vector3 getMousePos()
@@ -44,7 +37,8 @@ public class AntMovement : MonoBehaviour
 
     Vector3 getForward()
     {
-        return new Vector3(Mathf.Cos(transform.eulerAngles.z), Mathf.Sin(transform.eulerAngles.z), transform.position.z);
+        float rads = transform.eulerAngles.z * Mathf.PI / 180f;
+        return new Vector3(Mathf.Cos(rads), Mathf.Sin(rads), transform.position.z);
     }
 
     void setMovement()
