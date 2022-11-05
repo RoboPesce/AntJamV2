@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Food : MonoBehaviour
 {
+    [SerializeField] GameObject shadow;
+    private GameEngine game;
     private const int FALL = 0;
     private const int FRESH = 1;
     private const int ROT = 2;
@@ -12,12 +14,22 @@ public class Food : MonoBehaviour
     private const float minY = -4.5f;
     private const float fallSpeed = -2.0f;
     private Vector3 targetPosition;
+    private float freshTimer;
+    private float freshTime = 5.0f;
+    private float rotTimer;
+    private float rotTime = 5.0f;
+
     // Start is called before the first frame update
     void Start()
     {
         myState = FALL;
+        freshTimer = freshTime;
+        rotTimer = rotTime;
         float y = Random.Range(minY, maxY);
         targetPosition = new Vector3(transform.position.x, y, 0.0f);
+        //GameObject a = Instantiate(shadow, targetPosition - new Vector3(0.0f, 0.25f, 0.0f), Quaternion.identity);
+        //game = GameObject.FindObjectOfType<GameEngine>();
+        //a.transform.parent = game.transform;
     }
 
     // Update is called once per frame
@@ -34,10 +46,17 @@ public class Food : MonoBehaviour
             }
         }
         else if(myState == FRESH){
-
+            freshTimer -= Time.deltaTime;
+            if(freshTimer <= 0.0f){
+                myState = ROT;
+            }
         }
         else if(myState == ROT){
-
+            rotTimer -= Time.deltaTime;
+            if(rotTimer <= 0.0f){
+                Destroy(gameObject);
+            }
         }
     }
+
 }
