@@ -12,6 +12,7 @@ public class AntSpawner : MonoBehaviour
     private float maxX = 11.0f;
     private float maxY = 2.5f;
     private float minY = -5.0f;
+    private bool started = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,12 +24,18 @@ public class AntSpawner : MonoBehaviour
     void Update()
     {
         timer -= Time.deltaTime;
-        SpawnAnt();
+        //SpawnAnt();
     }
 
-    void SpawnAnt()
+    public void SpawnAnt()
     {
-        if(timer <= 0.0f){
+        if(!started){
+            transform.position = new Vector3(0.0f, 0.0f, 0.0f);
+            GameObject a = Instantiate(myAnt, gameObject.transform);
+            a.transform.parent = game.transform;
+            started = true;
+        }
+        else if(timer <= 0.0f){
             int randNum = Random.Range(0,3);
             transform.position = GetPosition(randNum);
             GameObject a = Instantiate(myAnt, gameObject.transform);
