@@ -20,8 +20,6 @@ public class AntMovement : MonoBehaviour
         //rotation
         float dist = Vector3.Distance(transform.position, getMousePos());
         float angle = Vector2.SignedAngle(getForward(), movement);
-        Debug.Log("Euler:"+transform.eulerAngles.z);
-        Debug.Log("angle:" + angle);
         //check if ant is pointing towards player
         if (angle != 0) transform.Rotate(0.0f, 0.0f, angle);
         
