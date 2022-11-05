@@ -5,6 +5,7 @@ using UnityEngine;
 public class AntSpawner : MonoBehaviour
 {
     [SerializeField] GameEngine game;
+    [SerializeField] AntHandler antHandler;
     public GameObject myAnt;
     private float timer;
     private float spawnTime = 5.0f;
@@ -18,7 +19,7 @@ public class AntSpawner : MonoBehaviour
         timer = spawnTime;
         transform.position = new Vector3(0.0f, 0.0f, 0.0f);
         GameObject a = Instantiate(myAnt, gameObject.transform);
-        a.transform.parent = game.transform;
+        a.transform.parent = antHandler.transform;
         //Instantiate(myAnt, gameObject.transform);
     }
 
@@ -36,7 +37,7 @@ public class AntSpawner : MonoBehaviour
             int randNum = Random.Range(0, 3);
             transform.position = GetPosition(randNum);
             GameObject a = Instantiate(myAnt, gameObject.transform);
-            a.transform.parent = game.transform;
+            a.transform.parent = antHandler.transform;
             timer = spawnTime;
         }
     }
@@ -46,17 +47,16 @@ public class AntSpawner : MonoBehaviour
         float x = 0.0f;
         float y = 0.0f;
         if(num == 0){//chooses position on the left of the screen
-            x = minX;
+            x = minX -.5f;
             y = Random.Range(minY, maxY);
         }
-        else if(num == 1){//chooses position on the bottom of the screen
-            x = maxX;
+        else if(num == 1){//chooses position on the right of the screen
+            x = maxX + .5f;
             y = Random.Range(minY, maxY);
-            y -= 1.5f;
         }
-        else{//chooses position on the right of the screen
+        else{//chooses position on the bottom of the screen
             x = Random.Range(minX, maxX);
-            y = minY;
+            y = minY - .5f;
         }
         return new Vector3(x, y, 0.0f);
     }
