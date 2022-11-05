@@ -18,12 +18,21 @@ public class AntMovement : MonoBehaviour
     {
         setMovement();
         //rotation
+        Vector3 forward = getForward();
         float dist = Vector3.Distance(transform.position, getMousePos());
-        float angle = Vector2.SignedAngle(getForward(), movement);
+        float angle = Vector2.SignedAngle(forward, movement);
         //check if ant is pointing towards player
         if (angle != 0) transform.Rotate(0.0f, 0.0f, angle);
-        
-        if(dist > 1.0f ) transform.position += Time.deltaTime*movement*antSpeed;
+
+        movement *= Time.deltaTime * antSpeed;
+        /*
+        RaycastHit2D hit = Physics2D.Raycast((Vector2) transform.position, (Vector2) forward, 1);
+        float clamp = Mathf.Infinity;
+        if (hit.transform != null) clamp = Vector3.Distance(transform.position, hit.transform.position);
+        movement *= Mathf.Clamp(movement.magnitude, 0, clamp);
+        Debug.Log(movement.magnitude);
+        */
+        if(dist > 1.0f ) transform.position += movement;
     }
 
     Vector3 getMousePos()
