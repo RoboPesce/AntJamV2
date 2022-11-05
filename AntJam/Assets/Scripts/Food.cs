@@ -58,5 +58,12 @@ public class Food : MonoBehaviour
             }
         }
     }
-
+    private void OnTriggerEnter2D(Collider2D col){
+        if(myState == FRESH){
+            Destroy(gameObject);
+        }
+        else if(myState == ROT){
+            Destroy(col.gameObject);
+        }
+    }
 }
