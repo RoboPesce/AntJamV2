@@ -480,6 +480,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68409359de6eb4b4bad0c51031d71b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpawner: {fileID: 25190234}
+  maxAnts: 5
 --- !u!1 &926122669
 GameObject:
   m_ObjectHideFlags: 0

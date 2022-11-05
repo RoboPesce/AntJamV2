@@ -52,6 +52,7 @@ public class AntSpawner : MonoBehaviour
         else if(num == 1){//chooses position on the bottom of the screen
             x = maxX;
             y = Random.Range(minY, maxY);
+            y -= 1.5f;
         }
         else{//chooses position on the right of the screen
             x = Random.Range(minX, maxX);
