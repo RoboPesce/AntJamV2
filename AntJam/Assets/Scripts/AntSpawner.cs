@@ -16,10 +16,15 @@ public class AntSpawner : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if(timer > 1.0f){
+    }
+
+    void SpawnAnt()
+    {
+        if(timer > 5.0f){
             Instantiate(myAnt, gameObject.transform);
             timer = 0.0f;
         }
+        
     }
 }
 
