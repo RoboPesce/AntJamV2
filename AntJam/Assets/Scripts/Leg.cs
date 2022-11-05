@@ -27,9 +27,10 @@ public class Leg : MonoBehaviour
     {
         if (state == IDLE)
         {
+            
             float tarx = getMousePos().x;
-            float del = Mathf.Clamp (speed * ( tarx - transform.position.x ), -speedMax, speedMax);
-
+            float del = Mathf.Clamp (Time.deltaTime * speed * ( tarx - transform.position.x ), -speedMax, speedMax);
+            Debug.Log("moving by: " + del);
             Vector3 move = transform.position + new Vector3(del, 0, 0);
             transform.position = move;
         }
