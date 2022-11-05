@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -11,6 +12,9 @@ enum States
 
 public class Leg : MonoBehaviour
 {
+    [SerializeField] GameEngine game;
+    [SerializeField] SpriteRenderer legimg;
+    [SerializeField] SpriteRenderer shadow;
     private int state = 0;
     private float sidebound; // +/- the "radius" to the side
 
@@ -23,4 +27,6 @@ public class Leg : MonoBehaviour
     {
         
     }
+
+    public void setBound(float x) { sidebound = x; }
 }

@@ -46,6 +46,7 @@ public class AntSpawner : MonoBehaviour
         else{//chooses position on the right of the screen
 
         }
+        return Vector3.zero;
     }
 }
 
