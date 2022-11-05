@@ -27,12 +27,17 @@ public class Leg : MonoBehaviour
     {
         if (state == IDLE)
         {
-            
-            float tarx = getMousePos().x;
-            float del = Mathf.Clamp (Time.deltaTime * speed * ( tarx - transform.position.x ), -speedMax, speedMax);
-            Debug.Log("moving by: " + del);
+            Vector3 target = getMousePos();
+            //move leg
+            float del = Mathf.Clamp(Time.deltaTime * speed * (target.x - transform.position.x), -speedMax, speedMax);
             Vector3 move = transform.position + new Vector3(del, 0, 0);
             transform.position = move;
+            //move shadow up/down
+            del = Mathf.Clamp(Time.deltaTime * speed * (target.y - shadow.transform.position.y), -speedMax, speedMax);
+            move = shadow.transform.position + new Vector3(0, del, 0);
+            shadow.transform.position = move;
+
+            //check if should stomp
         }
         else if (state == STOMP)
         {
