@@ -21,9 +21,6 @@ public class AntSpawner : MonoBehaviour
         GameObject a = Instantiate(myAnt, gameObject.transform);
         a.transform.parent = antHandler.transform;
 
-        transform.position = new Vector3(-3.0f, 0.0f, 0.0f);
-        GameObject b = Instantiate(myAnt, gameObject.transform);
-        b.transform.parent = antHandler.transform;
         //Instantiate(myAnt, gameObject.transform);
     }
 
@@ -42,6 +39,10 @@ public class AntSpawner : MonoBehaviour
             transform.position = GetPosition(randNum);
             GameObject a = Instantiate(myAnt, gameObject.transform);
             a.transform.parent = antHandler.transform;
+            randNum = Random.Range(0, 3);
+            transform.position = GetPosition(randNum);
+            GameObject b = Instantiate(myAnt, gameObject.transform);
+            b.transform.parent = antHandler.transform;
             timer = spawnTime;
         }
     }
