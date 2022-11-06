@@ -7,8 +7,8 @@ public class AntSpawner : MonoBehaviour
     [SerializeField] GameManager game;
     [SerializeField] AntHandler antHandler;
     public GameObject myAnt;
-    private float timer;
-    private float spawnTime = 5.0f;
+    //private float timer;
+    //private float spawnTime = 5.0f;
     private float minX = -11.0f;
     private float maxX = 11.0f;
     private float maxY = 2.5f;
@@ -16,7 +16,7 @@ public class AntSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timer = spawnTime;
+        //timer = spawnTime;
         transform.position = new Vector3(0.0f, -7.0f, 0.0f);
         GameObject a = Instantiate(myAnt, gameObject.transform);
         a.transform.parent = antHandler.transform;
@@ -27,23 +27,23 @@ public class AntSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer -= Time.deltaTime;
+        //timer -= Time.deltaTime;
     }
 
     public void SpawnAnt()
     {
-        if (timer <= 0.0f)
-        {
+        //if (timer <= 0.0f)
+        //{
             int randNum = Random.Range(0, 3);
             transform.position = GetPosition(randNum);
             GameObject a = Instantiate(myAnt, gameObject.transform);
             a.transform.parent = antHandler.transform;
-            randNum = Random.Range(0, 3);
-            transform.position = GetPosition(randNum);
-            GameObject b = Instantiate(myAnt, gameObject.transform);
-            b.transform.parent = antHandler.transform;
-            timer = spawnTime;
-        }
+            //randNum = Random.Range(0, 3);
+            //transform.position = GetPosition(randNum);
+            //GameObject b = Instantiate(myAnt, gameObject.transform);
+            //b.transform.parent = antHandler.transform;
+            //timer = spawnTime;
+        //}
     }
 
     Vector3 GetPosition(int num)

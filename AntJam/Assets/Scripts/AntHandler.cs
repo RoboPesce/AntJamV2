@@ -7,6 +7,7 @@ public class AntHandler : MonoBehaviour
     [SerializeField] private AntSpawner mySpawner;
     [SerializeField] private int maxAnts = 100;
     [SerializeField] AudioManager audioManager;
+    bool threshold = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +33,11 @@ public class AntHandler : MonoBehaviour
     public void SpawnAnAnt(){
         if(getAntCount() < maxAnts){
             mySpawner.SpawnAnt();
+        }
+        if(getAntCount() > 50 && !threshold){
+            audioManager.StopPlaying("AntMusic");
+            audioManager.Play("AntMusicFast");
+            threshold = true;
         }
     }
 }

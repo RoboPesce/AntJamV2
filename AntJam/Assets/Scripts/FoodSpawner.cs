@@ -25,6 +25,7 @@ public class FoodSpawner : MonoBehaviour
             float x = Random.Range(minX, maxX);
             transform.position = new Vector3(x, maxY, 0.0f);
             SpawnFood();
+            spawnTime = Random.Range(1.0f, 6.0f);
             foodTimer = spawnTime;
         }
     }
