@@ -23,17 +23,18 @@ public class Leg : MonoBehaviour
     [SerializeField] float[] stompTime = { 2.5f, 5f };
     float stompTimer;
     float groundTime = 1f;
-    float groundTimer = 1f;
+    float groundTimer;
     private int state = IDLE;
 
     void Start()
     {
         resetStompTimer();
+        groundTimer = groundTime;
     }
 
     void Update()
     {
-        Debug.Log("leg state:" + state);
+        Debug.Log("leg state: " + state);
 
         switch (state)
         {
@@ -52,7 +53,7 @@ public class Leg : MonoBehaviour
                 if (stompTimer <= 0) state = STOMP;
                 break;
             case STOMP:
-                float legSpeed = downSpeed * Time.deltaTime;
+                float legSpeed = downSpeed * Time.deltaTime * (-shadow.transform.position.y / 2);
                 Vector3 legPos = legimg.transform.position;
                 legPos.y = Mathf.Clamp(legPos.y - legSpeed, shadow.transform.position.y + 5, 9);
                 legimg.transform.position = legPos;
@@ -67,14 +68,14 @@ public class Leg : MonoBehaviour
                 if (groundTimer <= 0) state = LIFT;
                 break;
             case LIFT:
-                legSpeed = upSpeed * Time.deltaTime;
+                legSpeed = upSpeed * Time.deltaTime * (-shadow.transform.position.y / 2);
                 legPos = legimg.transform.position;
                 legPos.y = Mathf.Clamp(legPos.y + legSpeed, shadow.transform.position.y + 5, 9);
                 legimg.transform.position = legPos;
                 if (legPos.y == 9)
                 {
-                    state = IDLE;
                     resetStompTimer();
+                    state = IDLE;
                 }
                 break;
         }

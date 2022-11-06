@@ -1337,7 +1337,7 @@ MonoBehaviour:
   speed: 0.75
   speedMax: 7
   downSpeed: 5
-  upSpeed: 1
+  upSpeed: 3
   stompTime:
   - 2.5
   - 5
