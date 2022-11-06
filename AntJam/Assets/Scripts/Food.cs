@@ -21,6 +21,7 @@ public class Food : MonoBehaviour
     private float rotTimer;
     private float rotTime = 5.0f;
     private SpriteRenderer shadowRender;
+    private Vector3 scaleChange;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +36,8 @@ public class Food : MonoBehaviour
         game = GameObject.FindObjectOfType<GameManager>();
         myShadow.transform.parent = game.transform;
         myHandler = GameObject.FindObjectOfType<AntHandler>();
-        shadowRender.color = Color.white;
+        shadowRender.color = new Color(0.0f, 0.0f, 0.0f, .1f);
+        scaleChange = new Vector3(-0.1f, -0.1f, 0.0f);
     }
 
     // Update is called once per frame
@@ -43,10 +45,9 @@ public class Food : MonoBehaviour
     {
         if(myState == FALL){
             Color newColor = shadowRender.color;
-            newColor.r -= .1f*Time.deltaTime;
-            newColor.g -= .1f*Time.deltaTime;
-            newColor.b -= .1f*Time.deltaTime;
+            newColor.a += .1f*Time.deltaTime;
             shadowRender.color = newColor;
+            myShadow.transform.localScale += scaleChange*Time.deltaTime;
             float y = transform.position.y;
             y += fallSpeed*Time.deltaTime;
             transform.position = new Vector3(transform.position.x, y, 0.0f);
