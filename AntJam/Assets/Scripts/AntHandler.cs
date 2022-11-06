@@ -13,9 +13,6 @@ public class AntHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //mySpawner = GameObject.FindObjectOfType<AntSpawner>();
-        //mySpawner.SpawnAnt();
-        //mySpawner.SpawnAnt();
         audioManager.Play("AntMusic");
     }
 

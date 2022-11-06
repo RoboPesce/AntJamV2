@@ -20,7 +20,7 @@ public class Leg : MonoBehaviour
     [SerializeField] float speedMax;
     [SerializeField] float downSpeed;
     [SerializeField] float upSpeed;
-    [SerializeField] float[] stompTime = { 2.5f, 5f };
+    [SerializeField] float[] stompTime = { 0f, 1f };
     [SerializeField] AudioManager audioManager;
     float stompTimer;
     float groundTime = 1f;
@@ -64,7 +64,7 @@ public class Leg : MonoBehaviour
                 if (Mathf.Approximately(legimg.transform.position.y, shadow.transform.position.y + 5f))
                 {
                     audioManager.Play("BootSmush");
-                    RaycastHit2D[] hits = Physics2D.CapsuleCastAll(shadow.transform.position, shadow.transform.localScale * 0.75f, CapsuleDirection2D.Horizontal, 0, Vector2.zero);
+                    RaycastHit2D[] hits = Physics2D.CapsuleCastAll(shadow.transform.position, shadow.transform.localScale * 1.8f, CapsuleDirection2D.Horizontal, 0, Vector2.zero);
                     for (int i = 0; i < hits.Length; i++)
                     {
                         //Debug.Log(hits[i].transform.name);
@@ -107,8 +107,14 @@ public class Leg : MonoBehaviour
         state = IDLE;
 
         int score = game.getScore();
-        float time = Random.Range(stompTime[0], stompTime[1]);
-        //Finish implementing!!!!
+        if (score > 30000)
+        {
+            stompTimer = 0.5f;
+            return;
+        }
+
+        float time = 0.5f +  0.3f * Random.Range(stompTime[0], stompTime[1]) * 30000 / (score + 10000);
+        Debug.Log("Time: " + time);
         stompTimer = time;
     }
 }
