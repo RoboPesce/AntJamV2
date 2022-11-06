@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   antSpeed: 3
-  myCollider: {fileID: 45061630103451596}
+  myCollider: {fileID: 1726939885379232585}
 --- !u!70 &45061630103451596
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

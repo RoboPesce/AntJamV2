@@ -57,6 +57,11 @@ public class AntMovement : MonoBehaviour
         movement = m;
         movement.Normalize();
     }
-
+    private void OnTriggerEnter2D(Collider2D col){
+        if(col.gameObject.name == "InsideFloor" && !myCollider.enabled){
+            //Debug.Log(col.gameObject.name);
+            myCollider.enabled = true;
+        }
+    }
 
 }

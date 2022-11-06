@@ -71,7 +71,6 @@ public class Food : MonoBehaviour
         }
     }
     private void OnTriggerEnter2D(Collider2D col){
-        Debug.Log("Trigger");
         if(myState == FRESH){
             myHandler.SpawnAnAnt();
             Destroy(gameObject);
