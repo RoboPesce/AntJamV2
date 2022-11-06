@@ -22,9 +22,9 @@ public class AntMovement : MonoBehaviour
     void Update()
     {
         timer-=Time.deltaTime;
-        if(timer <= 0.0f){
-            myCollider.enabled = true;
-        }
+        //if(timer <= 0.0f){
+            //myCollider.enabled = true;
+        //}
         setMovement();
         //rotation
         Vector3 forward = getForward();
@@ -57,5 +57,6 @@ public class AntMovement : MonoBehaviour
         movement = m;
         movement.Normalize();
     }
+
 
 }
