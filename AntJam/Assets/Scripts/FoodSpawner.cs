@@ -11,6 +11,8 @@ public class FoodSpawner : MonoBehaviour
     private float minX = -10.0f;
     private float maxX = 10.0f;
     private float maxY = 5.5f;
+    //private GameObject leftWall;
+    //private GameObject rightWall;
     // Start is called before the first frame update
     void Start()
     {

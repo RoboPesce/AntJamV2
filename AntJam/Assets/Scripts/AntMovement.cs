@@ -6,16 +6,23 @@ public class AntMovement : MonoBehaviour
 {
     private Vector3 movement;
     [SerializeField] private float antSpeed=2.0f;
+    [SerializeField] public CapsuleCollider2D myCollider;
+    private float timer = 1.0f;
     // Start is called before the first frame update
     void Start()
     {
         //Camera.main.ScreenToWorldPoint(Input.mousePosition);
         setMovement();
+        myCollider.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        timer-=Time.deltaTime;
+        if(timer <= 0.0f){
+            myCollider.enabled = true;
+        }
         setMovement();
         //rotation
         Vector3 forward = getForward();
@@ -57,6 +64,6 @@ public class AntMovement : MonoBehaviour
     }
 
     private void OnColliderEnter2D(Collider2D col){
-        
+
     }
 }
