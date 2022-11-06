@@ -50,7 +50,7 @@ public class Leg : MonoBehaviour
                 //move shadow up/down
                 del = Mathf.Clamp(Time.deltaTime * speed * (target.y - shadow.transform.position.y), -speedMax, speedMax);
                 move = shadow.transform.position + new Vector3(0, del, 0);
-                move.y = Mathf.Clamp(move.y, -5 + shadow.transform.localScale.y/2, 3 - shadow.transform.localScale.y / 2);
+                move.y = Mathf.Clamp(move.y, -5 + shadow.transform.localScale.y/2, 3.4f - shadow.transform.localScale.y / 2);
                 shadow.transform.position = move;
                 stompTimer -= Time.deltaTime;
                 if (stompTimer <= 0) state = STOMP;

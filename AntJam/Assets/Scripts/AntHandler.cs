@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AntHandler : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class AntHandler : MonoBehaviour
     [SerializeField] private int maxAnts = 100;
     [SerializeField] AudioManager audioManager;
     bool threshold = false;
+    float endgameTimer = 1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +22,10 @@ public class AntHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(getAntCount() == 0){
-            Debug.Log("END of Game");
+        if (getAntCount() == 0)
+        {
+            endgameTimer -= Time.deltaTime;
+            if (endgameTimer <= 0) SceneManager.LoadScene(0);
         }
     }
     public int getAntCount()
