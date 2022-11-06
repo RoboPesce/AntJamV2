@@ -7,12 +7,10 @@ public class FoodSpawner : MonoBehaviour
     public GameObject food;
     private float foodTimer;
     [SerializeField] GameEngine game;
-    [SerializeField] private float spawnTime = 10.0f;
+    [SerializeField] private float spawnTime = 5.0f;
     private float minX = -10.0f;
     private float maxX = 10.0f;
     private float maxY = 5.5f;
-    //private GameObject leftWall;
-    //private GameObject rightWall;
     // Start is called before the first frame update
     void Start()
     {
