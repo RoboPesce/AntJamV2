@@ -34,8 +34,6 @@ public class Leg : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("leg state: " + state);
-
         switch (state)
         {
             case IDLE:

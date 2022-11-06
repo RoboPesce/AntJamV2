@@ -6,7 +6,7 @@ public class FoodSpawner : MonoBehaviour
 {
     public GameObject food;
     private float foodTimer;
-    [SerializeField] GameEngine game;
+    [SerializeField] GameManager game;
     [SerializeField] private float spawnTime = 5.0f;
     private float minX = -10.0f;
     private float maxX = 10.0f;
