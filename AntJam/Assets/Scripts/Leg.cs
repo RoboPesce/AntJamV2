@@ -58,6 +58,15 @@ public class Leg : MonoBehaviour
                 legimg.transform.position = legPos;
                 if (Mathf.Approximately(legimg.transform.position.y, shadow.transform.position.y + 5f))
                 {
+                    Debug.Log("stomping");
+                    
+                    RaycastHit2D[] hits = Physics2D.CapsuleCastAll(shadow.transform.position, shadow.transform.localScale * 0.75f, CapsuleDirection2D.Horizontal, 0, Vector2.zero);
+                    for (int i = 0; i < hits.Length; i++)
+                    {
+                        Debug.Log(hits[i].transform.name);
+                        if (hits[i].transform.name == "Ant(Clone)" || hits[i].transform.name == "Food(Clone)") Destroy(hits[i].transform.gameObject);
+                    }
+                    
                     groundTimer = groundTime;
                     state = ONGROUND;
                 }
@@ -81,6 +90,7 @@ public class Leg : MonoBehaviour
                 break;
         }
     }
+
     Vector3 getMousePos()
     {
         Vector3 cam = Camera.main.ScreenToWorldPoint(Input.mousePosition);

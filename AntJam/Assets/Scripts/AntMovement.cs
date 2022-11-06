@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AntMovement : MonoBehaviour
 {
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D rigidBody;
     private Vector3 movement;
     [SerializeField] private float antSpeed=2.0f;
     [SerializeField] public CapsuleCollider2D myCollider;
@@ -12,8 +12,7 @@ public class AntMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
-        //Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        rigidBody = GetComponent<Rigidbody2D>();
         setMovement();
         myCollider.enabled = false;
     }
@@ -22,9 +21,6 @@ public class AntMovement : MonoBehaviour
     void Update()
     {
         timer-=Time.deltaTime;
-        //if(timer <= 0.0f){
-            //myCollider.enabled = true;
-        //}
         setMovement();
         //rotation
         Vector3 forward = getForward();
@@ -33,8 +29,8 @@ public class AntMovement : MonoBehaviour
         //check if ant is pointing towards player
         if (angle != 0) transform.Rotate(0.0f, 0.0f, angle);
 
-        if (dist > 1.0f) rigidbody.velocity = movement * antSpeed;
-        else rigidbody.velocity = Vector2.zero;
+        if (dist > 1.0f) rigidBody.velocity = movement * antSpeed;
+        else rigidBody.velocity = Vector2.zero;
     }
 
     Vector3 getMousePos()
@@ -57,11 +53,11 @@ public class AntMovement : MonoBehaviour
         movement = m;
         movement.Normalize();
     }
-    private void OnTriggerEnter2D(Collider2D col){
+    private void OnTriggerEnter2D(Collider2D col)
+    {
         if(col.gameObject.name == "InsideFloor" && !myCollider.enabled){
             //Debug.Log(col.gameObject.name);
             myCollider.enabled = true;
         }
     }
-
-}
+}   
