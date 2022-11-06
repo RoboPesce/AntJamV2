@@ -32,6 +32,7 @@ public class Food : MonoBehaviour
     [SerializeField] Sprite cupcakeRot;
     [SerializeField] Sprite grapesFresh;
     [SerializeField] Sprite grapesRot;
+    [SerializeField] public AudioManager audioManager;
     private Sprite myFresh;
     private Sprite myRot;
 
@@ -114,6 +115,8 @@ public class Food : MonoBehaviour
             Destroy(gameObject);
         }
         else if(myState == ROT){
+            audioManager = GameObject.FindObjectOfType<AudioManager>();
+            audioManager.Play("AntDeath");
             Destroy(col.gameObject);
         }
     }
