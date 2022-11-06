@@ -10,7 +10,8 @@ public class AntHandler : MonoBehaviour
     void Start()
     {
         //mySpawner = GameObject.FindObjectOfType<AntSpawner>();
-        mySpawner.SpawnAnt();
+        //mySpawner.SpawnAnt();
+        //mySpawner.SpawnAnt();
     }
 
     // Update is called once per frame

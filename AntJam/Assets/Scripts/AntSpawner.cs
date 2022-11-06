@@ -17,9 +17,13 @@ public class AntSpawner : MonoBehaviour
     void Start()
     {
         timer = spawnTime;
-        transform.position = new Vector3(0.0f, 0.0f, 0.0f);
+        transform.position = new Vector3(3.0f, 0.0f, 0.0f);
         GameObject a = Instantiate(myAnt, gameObject.transform);
         a.transform.parent = antHandler.transform;
+
+        transform.position = new Vector3(-3.0f, 0.0f, 0.0f);
+        GameObject b = Instantiate(myAnt, gameObject.transform);
+        b.transform.parent = antHandler.transform;
         //Instantiate(myAnt, gameObject.transform);
     }
 
