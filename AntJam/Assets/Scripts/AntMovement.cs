@@ -6,12 +6,15 @@ public class AntMovement : MonoBehaviour
 {
     private Rigidbody2D rigidbody;
     private Vector3 movement;
+    public GameObject body;
+    private SpriteRenderer myRender;
     [SerializeField] private float antSpeed=2.0f;
     [SerializeField] public CapsuleCollider2D myCollider;
     private float timer = 1.0f;
     // Start is called before the first frame update
     void Start()
     {
+        myRender = body.GetComponent<SpriteRenderer>();
         rigidbody = GetComponent<Rigidbody2D>();
         //Camera.main.ScreenToWorldPoint(Input.mousePosition);
         setMovement();
@@ -28,6 +31,13 @@ public class AntMovement : MonoBehaviour
         setMovement();
         //rotation
         Vector3 forward = getForward();
+        if(forward.x > 0){
+            myRender.flipX = true;
+            myRender.flipY = false;
+        }
+        else{
+            myRender.flipY = true;
+        }
         float dist = Vector3.Distance(transform.position, getMousePos());
         float angle = Vector2.SignedAngle(forward, movement);
         //check if ant is pointing towards player
