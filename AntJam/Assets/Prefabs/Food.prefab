@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3810d7b7e7fd2e649aba4393338988bd, type: 3}
   m_Color: {r: 0.91112316, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,7 +101,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2.22, y: 2.22}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -123,3 +123,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shadow: {fileID: 5871992608062198612, guid: 3b747f7e3f052aa428c712dd02d2dbcb, type: 3}
+  appleFresh: {fileID: 21300000, guid: 3810d7b7e7fd2e649aba4393338988bd, type: 3}
+  appleRot: {fileID: 21300000, guid: d644d3f653843a84c8c66820806cc8c2, type: 3}
+  breadFresh: {fileID: 21300000, guid: 50aff3d6bb11778439f94484317adc45, type: 3}
+  breadRot: {fileID: 21300000, guid: bb0f7529653823a4f875586f90795d4f, type: 3}
+  cheeseFresh: {fileID: 21300000, guid: d695e0532bfa51d4b923071bd4459214, type: 3}
+  cheeseRot: {fileID: 21300000, guid: d5466ad220f224249baacfb8283d5436, type: 3}
+  cupcakeFresh: {fileID: 21300000, guid: f6ad31712202dc94d810d1c66eb493ae, type: 3}
+  cupcakeRot: {fileID: 21300000, guid: 6e27a8d078c632848b244492c20bd716, type: 3}
+  grapesFresh: {fileID: 21300000, guid: 777021bed1fe3ef4ebfcaec9af000ca7, type: 3}
+  grapesRot: {fileID: 21300000, guid: 7568d5344bc53d6448b454ba51be5d5c, type: 3}

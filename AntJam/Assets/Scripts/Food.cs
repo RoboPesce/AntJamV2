@@ -22,6 +22,18 @@ public class Food : MonoBehaviour
     private float rotTime = 5.0f;
     private SpriteRenderer shadowRender;
     private Vector3 scaleChange;
+    [SerializeField] Sprite appleFresh;
+    [SerializeField] Sprite appleRot;
+    [SerializeField] Sprite breadFresh;
+    [SerializeField] Sprite breadRot;
+    [SerializeField] Sprite cheeseFresh;
+    [SerializeField] Sprite cheeseRot;
+    [SerializeField] Sprite cupcakeFresh;
+    [SerializeField] Sprite cupcakeRot;
+    [SerializeField] Sprite grapesFresh;
+    [SerializeField] Sprite grapesRot;
+    private Sprite myFresh;
+    private Sprite myRot;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +50,30 @@ public class Food : MonoBehaviour
         myHandler = GameObject.FindObjectOfType<AntHandler>();
         shadowRender.color = new Color(0.0f, 0.0f, 0.0f, .1f);
         scaleChange = new Vector3(-0.1f, -0.1f, 0.0f);
+
+        int num = Random.Range(0,5);
+        if(num == 0){
+            myFresh = appleFresh;
+            myRot = appleRot;
+        }
+        else if(num == 1){
+            myFresh = breadFresh;
+            myRot = breadRot;
+        }
+        else if(num == 2){
+            myFresh = cheeseFresh;
+            myRot = cheeseRot;
+        }
+        else if(num == 3){
+            myFresh = cupcakeFresh;
+            myRot = cupcakeRot;
+        }
+        else{
+            myFresh = grapesFresh;
+            myRot = grapesRot;
+        }
+        gameObject.GetComponent<SpriteRenderer>().sprite = myFresh;
+
     }
 
     // Update is called once per frame
@@ -62,6 +98,7 @@ public class Food : MonoBehaviour
             freshTimer -= Time.deltaTime;
             if(freshTimer <= 0.0f){
                 myState = ROT;
+                gameObject.GetComponent<SpriteRenderer>().sprite = myRot;
             }
         }
         else if(myState == ROT){
