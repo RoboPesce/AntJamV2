@@ -50,27 +50,30 @@ public class Leg : MonoBehaviour
                 stompTimer -= Time.deltaTime;
                 if (stompTimer <= 0) state = STOMP;
                 break;
+
             case STOMP:
-                float legSpeed = downSpeed * Time.deltaTime * (-shadow.transform.position.y / 2);
+                float legSpeed = downSpeed * Time.deltaTime * (5-shadow.transform.position.y) / 2;
                 Vector3 legPos = legimg.transform.position;
                 legPos.y = Mathf.Clamp(legPos.y - legSpeed, shadow.transform.position.y + 5, 9);
                 legimg.transform.position = legPos;
-                if (legPos.y == shadow.transform.position.y + 5)
+                if (Mathf.Approximately(legimg.transform.position.y, shadow.transform.position.y + 5f))
                 {
                     groundTimer = groundTime;
                     state = ONGROUND;
                 }
                 break;
+
             case ONGROUND:
                 groundTimer -= Time.deltaTime;
                 if (groundTimer <= 0) state = LIFT;
                 break;
+
             case LIFT:
-                legSpeed = upSpeed * Time.deltaTime * (-shadow.transform.position.y / 2);
+                legSpeed = upSpeed * Time.deltaTime * (5-shadow.transform.position.y) / 2;
                 legPos = legimg.transform.position;
                 legPos.y = Mathf.Clamp(legPos.y + legSpeed, shadow.transform.position.y + 5, 9);
                 legimg.transform.position = legPos;
-                if (legPos.y == 9)
+                if (Mathf.Approximately(legimg.transform.position.y, 9f))
                 {
                     resetStompTimer();
                     state = IDLE;
