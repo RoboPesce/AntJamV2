@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1763120628846184510}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 3810d7b7e7fd2e649aba4393338988bd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -108,7 +108,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
 --- !u!114 &9128339519616429256
 MonoBehaviour:
@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shadow: {fileID: 5871992608062198612, guid: 3b747f7e3f052aa428c712dd02d2dbcb, type: 3}
+  myState: 0
   appleFresh: {fileID: 21300000, guid: 3810d7b7e7fd2e649aba4393338988bd, type: 3}
   appleRot: {fileID: 21300000, guid: d644d3f653843a84c8c66820806cc8c2, type: 3}
   breadFresh: {fileID: 21300000, guid: 50aff3d6bb11778439f94484317adc45, type: 3}
@@ -133,3 +134,5 @@ MonoBehaviour:
   cupcakeRot: {fileID: 21300000, guid: 6e27a8d078c632848b244492c20bd716, type: 3}
   grapesFresh: {fileID: 21300000, guid: 777021bed1fe3ef4ebfcaec9af000ca7, type: 3}
   grapesRot: {fileID: 21300000, guid: 7568d5344bc53d6448b454ba51be5d5c, type: 3}
+  audioManager: {fileID: 0}
+  myFresh: {fileID: 0}

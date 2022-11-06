@@ -21,6 +21,7 @@ public class Leg : MonoBehaviour
     [SerializeField] float downSpeed;
     [SerializeField] float upSpeed;
     [SerializeField] float[] stompTime = { 2.5f, 5f };
+    [SerializeField] AudioManager audioManager;
     float stompTimer;
     float groundTime = 1f;
     float groundTimer;
@@ -58,6 +59,15 @@ public class Leg : MonoBehaviour
                 legimg.transform.position = legPos;
                 if (Mathf.Approximately(legimg.transform.position.y, shadow.transform.position.y + 5f))
                 {
+                    audioManager.Play("BootSmush");
+                    RaycastHit2D[] hits = Physics2D.CapsuleCastAll(shadow.transform.position, shadow.transform.localScale * 0.75f, CapsuleDirection2D.Horizontal, 0, Vector2.zero);
+                    for (int i = 0; i < hits.Length; i++)
+                    {
+                        Debug.Log(hits[i].transform.name);
+                        if(hits[i].transform.name == "Ant(Clone)" ) audioManager.Play("AntDeath");
+                        if (hits[i].transform.name == "Ant(Clone)" || hits[i].transform.name == "Food(Clone)") Destroy(hits[i].transform.gameObject);
+                    }
+
                     groundTimer = groundTime;
                     state = ONGROUND;
                 }

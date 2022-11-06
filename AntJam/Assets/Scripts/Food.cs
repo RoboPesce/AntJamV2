@@ -11,7 +11,7 @@ public class Food : MonoBehaviour
     private const int FALL = 0;
     private const int FRESH = 1;
     private const int ROT = 2;
-    private int myState;
+    public int myState;
     private const float maxY = 2.5f;
     private const float minY = -4.5f;
     private const float fallSpeed = -2.0f;
@@ -31,18 +31,19 @@ public class Food : MonoBehaviour
     [SerializeField] Sprite grapesFresh;
     [SerializeField] Sprite grapesRot;
     [SerializeField] public AudioManager audioManager;
-    private Sprite myFresh;
+    public Sprite myFresh;
     private Sprite myRot;
     private int antsKilled = 0;
+    BoxCollider2D myCollider;
 
     // Start is called before the first frame update
     void Start()
     {
         myState = FALL;
         freshTimer = Random.Range(1.0f, 5.0f);
-        rotTimer = 10.0f;
+        rotTimer = 30.0f;
         float y = Random.Range(minY, maxY);
-        targetPosition = new Vector3(transform.position.x, y, 0.0f);
+        targetPosition = new Vector3(transform.position.x, y-.5f, 0.0f);
         myShadow = Instantiate(shadow, targetPosition - new Vector3(0.0f, 0.25f, 0.0f), Quaternion.identity);
         shadowRender = myShadow.GetComponent<SpriteRenderer>();
         game = GameObject.FindObjectOfType<GameManager>();
@@ -73,6 +74,8 @@ public class Food : MonoBehaviour
             myRot = grapesRot;
         }
         gameObject.GetComponent<SpriteRenderer>().sprite = myFresh;
+        myCollider = GetComponent<BoxCollider2D>();
+        myCollider.enabled = false;
 
     }
 
@@ -88,28 +91,33 @@ public class Food : MonoBehaviour
             y += fallSpeed*Time.deltaTime;
             transform.position = new Vector3(transform.position.x, y, 0.0f);
             Vector3 myPos = transform.position;
-            if(Vector3.Distance(myPos, targetPosition) <= 0.1f){
-                transform.position= targetPosition;
+            if(Vector3.Distance(myPos, targetPosition) <= 0.5f){
+                transform.position = targetPosition + new Vector3(0.0f, 0.5f, 0.0f);
                 myState = FRESH;
-                Destroy(myShadow);
+                myCollider.enabled = true;
             }
         }
         else if(myState == FRESH){
             freshTimer -= Time.deltaTime;
             if(freshTimer <= 0.0f){
+                
                 myState = ROT;
                 gameObject.GetComponent<SpriteRenderer>().sprite = myRot;
             }
         }
         else if(myState == ROT){
-            
+            rotTimer -= Time.deltaTime;
+            if(rotTimer <= 0.0f){
+                Destroy(gameObject);
+            }
         }
     }
-    private void OnTriggerEnter2D(Collider2D col){
-        if(myState == FRESH){
-            //BoxCollider2D myCollider = GetComponent<BoxCollider2D>();
-            //myCollider.enabled = false;
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if(myState == FRESH)
+        {
             myHandler.SpawnAnAnt();
+            Destroy(myShadow);
             Destroy(gameObject);
         }
         else if(myState == ROT){
@@ -118,6 +126,7 @@ public class Food : MonoBehaviour
             antsKilled += 1;
             Destroy(col.gameObject);
             if(antsKilled >= 5){
+                Destroy(myShadow);
                 Destroy(gameObject);
             }
         }
