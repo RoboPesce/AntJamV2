@@ -5,7 +5,7 @@ using UnityEngine;
 public class AntHandler : MonoBehaviour
 {
     [SerializeField] private AntSpawner mySpawner;
-    [SerializeField] private int maxAnts = 5;
+    [SerializeField] private int maxAnts = 100;
     // Start is called before the first frame update
     void Start()
     {

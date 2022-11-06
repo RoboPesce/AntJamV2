@@ -762,7 +762,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mySpawner: {fileID: 25190234}
-  maxAnts: 20
+  maxAnts: 100
 --- !u!1 &926122669
 GameObject:
   m_ObjectHideFlags: 0
