@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] AntHandler myHandler;
+    [SerializeField] public AntHandler myHandler;
     [SerializeField] Text myText;
     [SerializeField] Text antText;
     private int score = 0;
@@ -27,4 +27,6 @@ public class GameManager : MonoBehaviour
             timer = 1.0f;
         }
     }
+
+    public int getScore() { return score; }
 }

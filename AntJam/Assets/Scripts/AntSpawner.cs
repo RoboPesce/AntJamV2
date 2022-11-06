@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AntSpawner : MonoBehaviour
 {
-    [SerializeField] GameEngine game;
+    [SerializeField] GameManager game;
     [SerializeField] AntHandler antHandler;
     public GameObject myAnt;
     private float timer;
