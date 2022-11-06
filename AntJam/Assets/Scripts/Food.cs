@@ -17,9 +17,7 @@ public class Food : MonoBehaviour
     private const float fallSpeed = -2.0f;
     private Vector3 targetPosition;
     private float freshTimer;
-    private float freshTime = 5.0f;
     private float rotTimer;
-    private float rotTime = 5.0f;
     private SpriteRenderer shadowRender;
     private Vector3 scaleChange;
     [SerializeField] Sprite appleFresh;
@@ -35,13 +33,14 @@ public class Food : MonoBehaviour
     [SerializeField] public AudioManager audioManager;
     private Sprite myFresh;
     private Sprite myRot;
+    private int antsKilled = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         myState = FALL;
-        freshTimer = freshTime;
-        rotTimer = rotTime;
+        freshTimer = Random.Range(1.0f, 5.0f);
+        rotTimer = 10.0f;
         float y = Random.Range(minY, maxY);
         targetPosition = new Vector3(transform.position.x, y, 0.0f);
         myShadow = Instantiate(shadow, targetPosition - new Vector3(0.0f, 0.25f, 0.0f), Quaternion.identity);
@@ -103,21 +102,24 @@ public class Food : MonoBehaviour
             }
         }
         else if(myState == ROT){
-            rotTimer -= Time.deltaTime;
-            if(rotTimer <= 0.0f){
-                Destroy(gameObject);
-            }
+            
         }
     }
     private void OnTriggerEnter2D(Collider2D col){
         if(myState == FRESH){
+            //BoxCollider2D myCollider = GetComponent<BoxCollider2D>();
+            //myCollider.enabled = false;
             myHandler.SpawnAnAnt();
             Destroy(gameObject);
         }
         else if(myState == ROT){
             audioManager = GameObject.FindObjectOfType<AudioManager>();
             audioManager.Play("AntDeath");
+            antsKilled += 1;
             Destroy(col.gameObject);
+            if(antsKilled >= 5){
+                Destroy(gameObject);
+            }
         }
     }
 }

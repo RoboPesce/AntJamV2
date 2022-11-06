@@ -796,25 +796,25 @@ MonoBehaviour:
   sounds:
   - name: AntDeath
     clip: {fileID: 8300000, guid: 357898bcd55ea7343bdfbcd86e7d2052, type: 3}
-    volume: 0.881
+    volume: 1
     pitch: 1
     source: {fileID: 0}
     loop: 0
   - name: AntMusic
     clip: {fileID: 8300000, guid: fc464a0311dbc6540b2af8c83be32486, type: 3}
-    volume: 0.881
+    volume: 1
     pitch: 1
     source: {fileID: 0}
     loop: 1
   - name: AntMusicFast
     clip: {fileID: 8300000, guid: ade6f9cd3ecfe68439ba7fbb39f58e26, type: 3}
-    volume: 0.881
+    volume: 1
     pitch: 1
     source: {fileID: 0}
     loop: 1
   - name: BootSmush
     clip: {fileID: 8300000, guid: 357898bcd55ea7343bdfbcd86e7d2052, type: 3}
-    volume: 0.881
+    volume: 1
     pitch: 1
     source: {fileID: 0}
     loop: 0
