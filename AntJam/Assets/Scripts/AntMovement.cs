@@ -63,7 +63,4 @@ public class AntMovement : MonoBehaviour
         movement.Normalize();
     }
 
-    private void OnColliderEnter2D(Collider2D col){
-
-    }
 }
