@@ -25,10 +25,13 @@ public class Leg : MonoBehaviour
     float stompTimer;
     float groundTime = 1f;
     float groundTimer;
+    float sideBound;
     private int state = IDLE;
 
     void Start()
     {
+        Camera cam = Camera.main;
+        sideBound = cam.orthographicSize * cam.aspect;
         resetStompTimer();
         groundTimer = groundTime;
     }
@@ -42,6 +45,7 @@ public class Leg : MonoBehaviour
                 //move leg
                 float del = Mathf.Clamp(Time.deltaTime * speed * (target.x - transform.position.x), -speedMax, speedMax);
                 Vector3 move = transform.position + new Vector3(del, 0, 0);
+                move.x = Mathf.Clamp(move.x, -sideBound + shadow.transform.localScale.x/2, sideBound - shadow.transform.localScale.x/2);
                 transform.position = move;
                 //move shadow up/down
                 del = Mathf.Clamp(Time.deltaTime * speed * (target.y - shadow.transform.position.y), -speedMax, speedMax);
@@ -63,7 +67,7 @@ public class Leg : MonoBehaviour
                     RaycastHit2D[] hits = Physics2D.CapsuleCastAll(shadow.transform.position, shadow.transform.localScale * 0.75f, CapsuleDirection2D.Horizontal, 0, Vector2.zero);
                     for (int i = 0; i < hits.Length; i++)
                     {
-                        Debug.Log(hits[i].transform.name);
+                        //Debug.Log(hits[i].transform.name);
                         if(hits[i].transform.name == "Ant(Clone)" ) audioManager.Play("AntDeath");
                         if (hits[i].transform.name == "Ant(Clone)" || hits[i].transform.name == "Food(Clone)") Destroy(hits[i].transform.gameObject);
                     }

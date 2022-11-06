@@ -95,6 +95,7 @@ public class Food : MonoBehaviour
                 transform.position = targetPosition + new Vector3(0.0f, 0.5f, 0.0f);
                 myState = FRESH;
                 myCollider.enabled = true;
+                Destroy(myShadow);
             }
         }
         else if(myState == FRESH){
@@ -117,16 +118,16 @@ public class Food : MonoBehaviour
         if(myState == FRESH)
         {
             myHandler.SpawnAnAnt();
-            Destroy(myShadow);
+            //Destroy(myShadow);
             Destroy(gameObject);
         }
         else if(myState == ROT){
+            //Destroy(myShadow);
             audioManager = GameObject.FindObjectOfType<AudioManager>();
             audioManager.Play("AntDeath");
             antsKilled += 1;
             Destroy(col.gameObject);
             if(antsKilled >= 5){
-                Destroy(myShadow);
                 Destroy(gameObject);
             }
         }

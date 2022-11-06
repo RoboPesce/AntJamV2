@@ -34,7 +34,7 @@ public class AntHandler : MonoBehaviour
         if(getAntCount() < maxAnts){
             mySpawner.SpawnAnt();
         }
-        if(getAntCount() > 50 && !threshold){
+        if(getAntCount() > 10 && !threshold){
             audioManager.StopPlaying("AntMusic");
             audioManager.Play("AntMusicFast");
             threshold = true;

@@ -20,8 +20,6 @@ public class AntSpawner : MonoBehaviour
         transform.position = new Vector3(0.0f, -7.0f, 0.0f);
         GameObject a = Instantiate(myAnt, gameObject.transform);
         a.transform.parent = antHandler.transform;
-        
-        
     }
 
     // Update is called once per frame
@@ -43,7 +41,7 @@ public class AntSpawner : MonoBehaviour
             //GameObject b = Instantiate(myAnt, gameObject.transform);
             //b.transform.parent = antHandler.transform;
             //timer = spawnTime;
-        //}
+       //}
     }
 
     Vector3 GetPosition(int num)
