@@ -418,7 +418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   food: {fileID: 1763120628846184510, guid: fe067adb508ffa1488bc9f511e87b192, type: 3}
-  game: {fileID: 0}
+  game: {fileID: 953874222}
   spawnTime: 10
 --- !u!1 &511661904
 GameObject:

@@ -7,7 +7,7 @@ public class Food : MonoBehaviour
     [SerializeField] GameObject shadow;
     private AntHandler myHandler;
     private GameObject myShadow;
-    private GameEngine game;
+    private GameManager game;
     private const int FALL = 0;
     private const int FRESH = 1;
     private const int ROT = 2;
@@ -32,7 +32,7 @@ public class Food : MonoBehaviour
         targetPosition = new Vector3(transform.position.x, y, 0.0f);
         myShadow = Instantiate(shadow, targetPosition - new Vector3(0.0f, 0.25f, 0.0f), Quaternion.identity);
         shadowRender = myShadow.GetComponent<SpriteRenderer>();
-        game = GameObject.FindObjectOfType<GameEngine>();
+        game = GameObject.FindObjectOfType<GameManager>();
         myShadow.transform.parent = game.transform;
         myHandler = GameObject.FindObjectOfType<AntHandler>();
         shadowRender.color = Color.white;
@@ -71,6 +71,7 @@ public class Food : MonoBehaviour
         }
     }
     private void OnTriggerEnter2D(Collider2D col){
+        Debug.Log("Trigger");
         if(myState == FRESH){
             myHandler.SpawnAnAnt();
             Destroy(gameObject);
