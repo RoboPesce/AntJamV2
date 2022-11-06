@@ -5,6 +5,7 @@ using UnityEngine;
 public class Food : MonoBehaviour
 {
     [SerializeField] GameObject shadow;
+    private AntHandler myHandler;
     private GameEngine game;
     private const int FALL = 0;
     private const int FRESH = 1;
@@ -30,6 +31,7 @@ public class Food : MonoBehaviour
         //GameObject a = Instantiate(shadow, targetPosition - new Vector3(0.0f, 0.25f, 0.0f), Quaternion.identity);
         //game = GameObject.FindObjectOfType<GameEngine>();
         //a.transform.parent = game.transform;
+        myHandler = GameObject.FindObjectOfType<AntHandler>();
     }
 
     // Update is called once per frame
@@ -60,6 +62,7 @@ public class Food : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D col){
         if(myState == FRESH){
+            myHandler.SpawnAnAnt();
             Destroy(gameObject);
         }
         else if(myState == ROT){

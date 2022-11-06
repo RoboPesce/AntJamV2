@@ -16,18 +16,19 @@ public class AntHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if(getAntCount() < maxAnts && EatFood()){
-            mySpawner.SpawnAnt();
+        if(getAntCount() == 0){
+            Debug.Log("END of Game");
         }
     }
-    bool EatFood(){
-        return true;
-    }
-
     public int getAntCount()
     {
         int c = transform.childCount - 1;
         return c;
+    }
+
+    public void SpawnAnAnt(){
+        if(getAntCount() < maxAnts){
+            mySpawner.SpawnAnt();
+        }
     }
 }
